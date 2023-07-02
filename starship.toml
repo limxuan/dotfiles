@@ -1,0 +1,8 @@
+add_newline = true
+command_timeout= 60000
+
+[character]
+success_symbol = '[➜](#C998E6)'
+
+[battery]
+disabled = true

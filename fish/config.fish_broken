@@ -1,0 +1,9 @@
+if status is-interactive
+    # Commands to run in interactive sessions can go here
+end
+
+alias g="git"
+alias ll="exa --icons"
+alias llt="exa -g --icons --tree --level=2 -a"
+set fish_greeting
+starship init fish | source

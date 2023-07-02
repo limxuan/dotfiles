@@ -1,0 +1,7 @@
+alias g="git"
+alias c="clear"
+alias ll="exa --icons"
+alias llt="exa -g --icons --tree --level=2 -a"
+alias djs-ts="g clone https://github.com/reconlx/djs-typescript-handler"
+set fish_greeting
+starship init fish | source
