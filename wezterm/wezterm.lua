@@ -2,23 +2,64 @@ local wezterm = require("wezterm")
 local rose_pine_color = require("lua.rose-pine").colors()
 local rose_pine_window_frame = require("lua.rose-pine").window_frame()
 
-local config = {}
+local fontFamily = "JetBrains Mono"
+local fontWeight = "Medium"
 
--- colorscheme
-config.colors = rose_pine_color
-config.window_frame = rose_pine_window_frame
-config.window_background_opacity = 0.9
-config.text_background_opacity = 0
-config.macos_window_background_blur = 30
-config.window_decorations = "RESIZE"
-config.window_padding = {
-	top = 0,
-	bottom = 0,
-	left = 10,
-	right = 0,
+return {
+	font = wezterm.font_with_fallback({
+		{
+			family = fontFamily,
+			weight = fontWeight,
+		},
+		{
+			family = "Symbols Nerd Font Mono",
+			scale = 0.7,
+		},
+	}),
+	font_rules = {
+		{
+			-- italic
+			intensity = "Normal",
+			italic = true,
+			font = wezterm.font({
+				family = fontFamily,
+				weight = fontWeight,
+				italic = false,
+			}),
+		},
+		{
+			-- bold
+			intensity = "Bold",
+			italic = false,
+			font = wezterm.font({
+				family = fontFamily,
+				weight = fontWeight,
+			}),
+		},
+		{
+			-- italic bold
+			intensity = "Bold",
+			italic = true,
+			font = wezterm.font({
+				family = fontFamily,
+				weight = fontWeight,
+				italic = false,
+			}),
+		},
+	},
+	font_size = 12.5,
+	--
+	hide_tab_bar_if_only_one_tab = true,
+	use_fancy_tab_bar = false,
+	window_padding = {
+		top = 0,
+		right = 0,
+		bottom = 0,
+		left = 0,
+	},
+	colors = rose_pine_color,
+	window_frame = rose_pine_window_frame,
+	window_decorations = "RESIZE",
+	window_background_opacity = 0.9,
+	macos_window_background_blur = 30,
 }
-config.hide_tab_bar_if_only_one_tab = true
-
-config.font = wezterm.font("JetBrains Mono")
-
-return config

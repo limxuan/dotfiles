@@ -1,7 +1,9 @@
 lastupdatecheck: 0
 recentrepos:
 - /Users/limxuan/.config
+- /Users/limxuan/.config/nvim
 - /Users/limxuan/.config/astronvim/lua/user
 startuppopupversion: 5
-customcommandshistory: []
+customcommandshistory:
+- q
 hidecommandlog: false
