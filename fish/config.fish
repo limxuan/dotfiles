@@ -4,8 +4,10 @@ alias v="nvim"
 alias ll="exa --icons"
 alias llt="exa -g --icons --tree --level=2 -a"
 alias sql="sqlite3"
+alias vs="fd --hidden --exclude .git | fzf-tmux -p | xargs nvim"
 alias lookatme="/Users/limxuan/Library/Python/3.10/bin/lookatme"
 set fish_greeting
+
 starship init fish | source
 
 # Setting PATH for Python 3.10
