@@ -14,5 +14,6 @@ starship init fish | source
 # The original version is saved in /Users/limxuan/.config/fish/config.fish.pysave
 set -x PATH "/Library/Frameworks/Python.framework/Versions/3.10/bin" "$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export XDG_CONFIG_HOME="/Users/limxuan/.config"
 
 set -g -x NODE_ENV "development"
