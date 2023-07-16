@@ -1,8 +1,9 @@
 lastupdatecheck: 0
 recentrepos:
 - /Users/limxuan/.config
-- /Users/limxuan/.config/nvim
+- /Users/limxuan/Documents/dev/irish-birthday-website
 - /Users/limxuan/.config/astronvim/lua/user
+- /Users/limxuan/.config/nvim
 startuppopupversion: 5
 customcommandshistory:
 - q

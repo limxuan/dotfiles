@@ -7,7 +7,7 @@
 local M = {}
 
 local palette = {
-	base = "#191724",
+	base = "#1B1D22",
 	overlay = "#26233a",
 	muted = "#6e6a86",
 	text = "#e0def4",
@@ -37,7 +37,7 @@ function M.colors()
 		cursor_bg = palette.highlight_high,
 		cursor_border = palette.highlight_high,
 		cursor_fg = palette.text,
-		selection_bg = "#2a283e",
+		selection_bg = "#9ccfd8",
 		selection_fg = palette.text,
 
 		ansi = {
