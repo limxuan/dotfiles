@@ -34,12 +34,12 @@ function M.colors()
 	return {
 		foreground = palette.text,
 		background = palette.base,
-		cursor_bg = palette.highlight_high,
+		cursor_fg = palette.love,
+		cursor_bg = palette.rose,
 		cursor_border = palette.highlight_high,
-		cursor_fg = palette.text,
 		selection_bg = "#9ccfd8",
 		selection_fg = palette.text,
-
+		--
 		ansi = {
 			palette.overlay,
 			palette.love,

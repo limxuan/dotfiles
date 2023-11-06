@@ -1,10 +1,10 @@
 alias g="git"
 alias c="clear"
 alias v="nvim"
-alias ll="exa --icons"
+alias ll="exa -l -g --icons"
 alias llt="exa -g --icons --tree --level=2 -a"
 alias sql="sqlite3"
-alias vs="fd --hidden --exclude .git | fzf-tmux -p | xargs nvim"
+alias sn="fd --hidden --exclude .git --exclude .obsidian | fzf-tmux -p --print0 | xargs -0 nvim"
 alias lookatme="/Users/limxuan/Library/Python/3.10/bin/lookatme"
 set fish_greeting
 
