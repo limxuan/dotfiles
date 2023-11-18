@@ -65,4 +65,5 @@ return {
 	window_background_opacity = 0.9,
 	macos_window_background_blur = 30,
 	default_cwd = "/Documents/dev",
+	harfbuzz_features = { "calt=0" },
 }
