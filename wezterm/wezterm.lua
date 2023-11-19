@@ -1,6 +1,8 @@
 local wezterm = require("wezterm")
-local rose_pine_color = require("lua.custom-theme").colors()
-local rose_pine_window_frame = require("lua.custom-theme").window_frame()
+local rose_pine_color = require("lua.rose-pine").colors()
+local solarized_color = require("lua.neosolarized").colors()
+local solarized_window_frame = require("lua.neosolarized").window_frame()
+local rose_pine_window_frame = require("lua.rose-pine").window_frame()
 
 local fontFamily = "JetBrains Mono"
 local fontWeight = "Medium"
