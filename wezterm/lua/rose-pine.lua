@@ -34,7 +34,7 @@ function M.colors()
 	return {
 		foreground = palette.text,
 		background = palette.base,
-		cursor_fg = palette.love,
+		cursor_fg = palette.base,
 		cursor_bg = palette.rose,
 		cursor_border = palette.highlight_high,
 		selection_bg = "#9ccfd8",
