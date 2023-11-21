@@ -327,14 +327,14 @@
         },
         "rules": [
           {
-            "description": "Deletes a word with <C-w>",
+            "description": "Deletes a word with shift delete",
             "manipulators": [
               {
                 "from": {
-                  "key_code": "w",
+                  "key_code": "delete_or_backspace",
                   "modifiers": {
                     "mandatory": [
-                      "control"
+                      "left_shift"
                     ]
                   }
                 },
