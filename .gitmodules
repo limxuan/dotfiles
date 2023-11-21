@@ -1,0 +1,3 @@
+[submodule "astronvim/lua/user"]
+	path = astronvim/lua/user
+	url = https://github.com/limxuan/astronvim-user-config.git
