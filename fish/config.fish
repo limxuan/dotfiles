@@ -1,6 +1,8 @@
 alias g="git"
 alias c="clear"
 alias v="nvim"
+alias anime="jerry"
+alias movie="lobster" 
 alias ll="exa -l -g --icons"
 alias llt="exa -g --icons --tree --level=2 -a"
 alias sql="sqlite3"
