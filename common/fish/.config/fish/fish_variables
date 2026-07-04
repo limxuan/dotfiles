@@ -1,0 +1,5 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR --export JAVA_HOME:/usr/lib/jvm/java\x2d25\x2dopenjdk
+SETUVAR __fish_initialized:4300
+SETUVAR fish_user_paths:/home/limxuan/\x2elocal/bin\x1e/home/limxuan/\x2eopencode/bin

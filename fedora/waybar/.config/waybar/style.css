@@ -1,0 +1,94 @@
+/* i3bar inspired Waybar stylesheet */
+
+* {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background-color: #000000;
+    color: #ffffff;
+    border-bottom: 1px solid #222222;
+}
+
+#workspaces button {
+    padding: 0 12px;
+    background-color: #111111;
+    color: #888888;
+    border-top: 2px solid transparent;
+}
+
+#workspaces button:hover {
+    background-color: #222222;
+    color: #ffffff;
+}
+
+#workspaces button.focused {
+    background-color: #285577;
+    color: #ffffff;
+    border-top: 2px solid #2e9ef4;
+}
+
+#workspaces button.urgent {
+    background-color: #900000;
+    color: #ffffff;
+}
+
+#mode {
+    background-color: #900000;
+    color: #ffffff;
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+#clock,
+#pulseaudio,
+#network,
+#battery,
+#tray {
+    padding: 0 12px;
+    background-color: #111111;
+    border-left: 1px solid #333333;
+}
+
+#sway-window {
+    padding-left: 12px;
+    color: #888888;
+}
+
+/* Color definitions to match classic i3 status formatting */
+#clock {
+    color: #ffffff;
+    background-color: #111111;
+}
+
+#pulseaudio {
+    color: #8a9a7b; /* Kanagawa-inspired green */
+}
+
+#network {
+    color: #8ba4b0; /* Kanagawa-inspired blue */
+}
+
+#battery {
+    color: #c4746e; /* Kanagawa-inspired red */
+}
+
+#battery.warning {
+    color: #c4b28a; /* Kanagawa-inspired yellow */
+}
+
+#battery.critical:not(.charging) {
+    color: #e82424;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#tray {
+    background-color: #111111;
+}

@@ -1,0 +1,9 @@
+# Temporary backup files created during installation
+*.bak.*
+
+# Vim/Neovim temporary files
+*.swp
+*~
+
+# OS metadata
+.DS_Store
