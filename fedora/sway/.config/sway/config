@@ -98,7 +98,7 @@ bindsym --inhibited Ctrl+Mod1+Shift+3 workspace number 3
 bindsym --inhibited Ctrl+Mod1+Shift+4 workspace number 4
 bindsym --inhibited Ctrl+Mod1+Shift+5 workspace number 5
 bindsym --inhibited Ctrl+Mod1+Shift+6 workspace number 6
-bindsym --inhibited Ctrl+Mod1+Shift+v workspace number 6
+bindsym --inhibited Ctrl+Mod1+Shift+x workspace number 6
 bindsym --inhibited Ctrl+Mod1+Shift+7 workspace number 7
 bindsym --inhibited Ctrl+Mod1+Shift+8 workspace number 8
 bindsym --inhibited Ctrl+Mod1+Shift+9 workspace number 9
@@ -124,16 +124,18 @@ bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 # 8. Screenshots & Pinning (Flameshot + Snipaste)
-bindsym Print exec env XDG_CURRENT_DESKTOP=sway flameshot gui
-bindsym --inhibited Ctrl+Mod1+Shift+s exec env XDG_CURRENT_DESKTOP=sway flameshot gui
+bindsym Print exec grim -g "$(slurp)" - | swappy -f -
+bindsym --inhibited Ctrl+Mod1+Shift+s exec grim -g "$(slurp)" - | swappy -f -
 bindsym Ctrl+Mod1+Shift+d exec ~/.config/scripts/paste-clipboard.fish
-bindsym Ctrl+Mod1+Shift+x exec grim - | wl-copy && notify-send "Screenshot" "Fullscreen copied to clipboard"
+bindsym Shift+Print exec grim - | wl-copy && notify-send "Screenshot" "Fullscreen copied to clipboard"
 
 # 9. Utilities
 bindsym $mod+f exec nautilus --new-window
 bindsym $mod+t exec kitty --class btop-floating -e btop
 bindsym $mod+d exec kitty -e lazydocker
 bindsym $mod+m exec pavucontrol
+bindsym $mod+a exec helium --new-window "https://gemini.google.com" "https://chatgpt.com" "https://claude.ai" "https://grok.com" "https://chat.deepseek.com"
+bindsym $mod+c exec helium --new-window "https://web.whatsapp.com" "https://web.telegram.org" "https://discord.com/app"
 
 
 # 10. Split orientation
@@ -155,7 +157,7 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit Sway?' -b 'Yes' 'swaymsg e
 for_window [app_id="imv"] floating enable, border none, sticky enable
 for_window [app_id="Snipaste"] floating enable, border none, sticky enable
 for_window [class="Snipaste"] floating enable, border none, sticky enable
-for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
+for_window [app_id="swappy"] floating enable, border none, resize set 1200 800, move position center
 for_window [app_id="Impala"] floating enable, resize set 800 600, move position center
 for_window [app_id="BlueTUI"] floating enable, resize set 800 600, move position center
 for_window [app_id="Wiremix"] floating enable, resize set 800 450, move position center

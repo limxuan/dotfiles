@@ -37,6 +37,7 @@ if [ "${OS}" = "fedora" ]; then
     sudo dnf copr enable alternateved/keyd -y
     sudo dnf copr enable lionheartp/Hyprland -y
     sudo dnf copr enable atim/starship -y
+    sudo dnf copr enable imput/helium -y
     if [ ! -f /etc/yum.repos.d/mise.repo ]; then
         sudo curl -o /etc/yum.repos.d/mise.repo https://mise.jdx.dev/rpm/mise.repo
     fi
@@ -45,7 +46,8 @@ if [ "${OS}" = "fedora" ]; then
     sudo dnf install -y \
         niri sway keyd stow kitty nautilus noctalia-git fish jetbrains-mono-fonts \
         starship mise ripgrep fzf eza zoxide wofi cliphist brightnessctl \
-        SwayNotificationCenter flameshot fuse-libs network-manager-applet pavucontrol wtype
+        SwayNotificationCenter grimshot sway-contrib swappy fuse-libs network-manager-applet pavucontrol wtype \
+        helium-bin
 
 elif [ "${OS}" = "kali" ]; then
     echo -e "\n${YELLOW}[1/6] Running Kali tools installer...${NC}"
@@ -120,7 +122,7 @@ sudo systemctl enable --now keyd.service
 
 if [ "${OS}" = "fedora" ]; then
     echo -e "Linking Fedora configurations..."
-    stow -d "${DOTFILES_DIR}/fedora" -t "$HOME" niri noctalia scripts sway waybar
+    stow -d "${DOTFILES_DIR}/fedora" -t "$HOME" niri noctalia scripts sway waybar swappy
 
     # Configure DNS-over-TLS globally via systemd-resolved
     echo -e "Configuring systemd-resolved for Cloudflare DNS..."

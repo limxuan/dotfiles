@@ -19,6 +19,7 @@ sudo apt-get install -y \
   eza \
   bat \
   xclip \
+  xdotool \
   curl \
   wget \
   neovim \
