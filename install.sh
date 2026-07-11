@@ -124,6 +124,11 @@ if [ "${OS}" = "fedora" ]; then
     echo -e "Linking Fedora configurations..."
     stow -d "${DOTFILES_DIR}/fedora" -t "$HOME" niri noctalia scripts sway waybar swappy
 
+    # Deploy GRUB configuration
+    echo -e "Deploying GRUB boot configuration..."
+    sudo cp "${DOTFILES_DIR}/fedora/grub/etc/default/grub" /etc/default/grub
+    sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+
     # Configure DNS-over-TLS globally via systemd-resolved
     echo -e "Configuring systemd-resolved for Cloudflare DNS..."
     sudo tee /etc/systemd/resolved.conf > /dev/null <<EOF
