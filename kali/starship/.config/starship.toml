@@ -70,6 +70,6 @@ else
   fi
 fi
 '''
-when = "true"
+when = "/usr/bin/true"
 style = "bold red"
 format = '[-\[](bold blue)[$output]($style)[\]](bold blue) '
