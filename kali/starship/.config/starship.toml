@@ -44,6 +44,9 @@ deleted    = ""
 [custom.network_ip]
 description = "Display active network interface and local IP address"
 command = '''
+exec 2>/tmp/starship_network_ip.log
+set -x
+
 if [ -x /usr/sbin/ip ]; then
   IP_CMD=/usr/sbin/ip
 elif [ -x /sbin/ip ]; then
