@@ -152,7 +152,20 @@ elif [ "${OS}" = "kali" ]; then
     
     echo -e "Enabling Avahi daemon for mDNS resolution..."
     sudo systemctl enable --now avahi-daemon
+
+    # Setup SSH authorized keys
+    echo -e "Configuring SSH authorized keys..."
+    mkdir -p "$HOME/.ssh"
+    chmod 700 "$HOME/.ssh"
+    touch "$HOME/.ssh/authorized_keys"
+    chmod 600 "$HOME/.ssh/authorized_keys"
+    SSH_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFxkC9AWoLNhjeaDXB/pE7iK1cYrpyfMds8r0OAbesFT"
+    if ! grep -qF "$SSH_KEY" "$HOME/.ssh/authorized_keys"; then
+        echo "$SSH_KEY" >> "$HOME/.ssh/authorized_keys"
+        echo "  - Added public key to authorized_keys"
+    fi
 fi
+
 
 # 6. Change default shell to Fish safely
 FISH_PATH=$(which fish 2>/dev/null || echo "/usr/bin/fish")
