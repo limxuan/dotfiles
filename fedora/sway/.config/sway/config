@@ -98,7 +98,7 @@ bindsym --inhibited Ctrl+Mod1+Shift+3 workspace number 3
 bindsym --inhibited Ctrl+Mod1+Shift+4 workspace number 4
 bindsym --inhibited Ctrl+Mod1+Shift+5 workspace number 5
 bindsym --inhibited Ctrl+Mod1+Shift+6 workspace number 6
-bindsym --inhibited Ctrl+Mod1+Shift+x workspace number 6
+bindsym --inhibited Ctrl+Mod1+Shift+x exec sleep 0.15 && swaymsg workspace number 6
 bindsym --inhibited Ctrl+Mod1+Shift+7 workspace number 7
 bindsym --inhibited Ctrl+Mod1+Shift+8 workspace number 8
 bindsym --inhibited Ctrl+Mod1+Shift+9 workspace number 9
