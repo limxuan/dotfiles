@@ -61,5 +61,5 @@ fi
 '''
 when = "true"
 style = "bold red"
-format = "[-[](bold blue)[$output]($style)[\]](bold blue) "
+format = '[-[](bold blue)[$output]($style)[\]](bold blue) '
 
