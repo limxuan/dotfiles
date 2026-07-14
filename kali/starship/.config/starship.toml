@@ -1,7 +1,7 @@
 add_newline = true
 command_timeout = 200
 format = '''
-[┌──\(](bold blue)$username[㉿](bold blue)$hostname[\)-](bold blue)$directory$git_branch$git_status$custom
+[┌──\(](bold blue)$username[㉿](bold blue)$hostname[\)─](bold blue)$directory$git_branch$git_status$custom
 $character'''
 
 [character]
@@ -23,7 +23,7 @@ style = "bold cyan"
 format = '[\[](bold blue)[$path]($style)[\]](bold blue)'
 
 [git_branch]
-format = '[-\[](bold blue)[$branch]($style)[\]](bold blue)'
+format = '[─\[](bold blue)[$branch]($style)[\]](bold blue)'
 style = "italic cyan"
 
 [git_status]
@@ -46,4 +46,4 @@ description = "Display active network interface and local IP address"
 command = "~/.config/scripts/network-ip.sh"
 when = "/usr/bin/test -x ~/.config/scripts/network-ip.sh"
 style = "bold red"
-format = '[-\[](bold blue)[$output]($style)[\]](bold blue)'
+format = '[─\[](bold blue)[$output]($style)[\]](bold blue)'
