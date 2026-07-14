@@ -18,7 +18,5 @@ if [ -z "$interface" ] || [ -z "$ip" ]; then
 fi
 
 if [ -n "$interface" ] && [ -n "$ip" ]; then
-  echo "[kali - $interface:$ip]"
-else
-  echo "[kali]"
+  echo "[$interface:$ip]"
 fi
