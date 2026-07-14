@@ -20,10 +20,10 @@ format = "[$hostname](bold red)"
 truncation_length = 2
 truncation_symbol = "…/"
 style = "bold cyan"
-format = "[\[](bold blue)[$path]($style)[\]](bold blue) "
+format = '[\[](bold blue)[$path]($style)[\]](bold blue) '
 
 [git_branch]
-format = "[-[](bold blue)[$branch]($style)[\]](bold blue) "
+format = '[-[](bold blue)[$branch]($style)[\]](bold blue) '
 style = "italic cyan"
 
 [git_status]
