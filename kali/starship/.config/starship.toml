@@ -44,16 +44,24 @@ deleted    = ""
 [custom.network_ip]
 description = "Display active network interface and local IP address"
 command = '''
-route_info=$(ip route get 1.1.1.1 2>/dev/null)
+if [ -x /usr/sbin/ip ]; then
+  IP_CMD=/usr/sbin/ip
+elif [ -x /sbin/ip ]; then
+  IP_CMD=/sbin/ip
+else
+  IP_CMD=ip
+fi
+
+route_info=$($IP_CMD route get 1.1.1.1 2>/dev/null)
 interface=$(echo "$route_info" | grep -oP 'dev \K\S+')
 ip=$(echo "$route_info" | grep -oP 'src \K[\d.]+')
 
 if [ -n "$interface" ] && [ -n "$ip" ]; then
   echo "$interface:$ip"
 else
-  # Offline fallback: find first non-loopback interface with an IPv4 address
-  interface=$(ip -4 -o addr show | grep -v ' lo ' | awk '{print $2}' | head -n 1)
-  ip=$(ip -4 -o addr show | grep -v ' lo ' | awk '{print $4}' | cut -d/ -f1 | head -n 1)
+  # Offline fallback
+  interface=$($IP_CMD -4 -o addr show | grep -v ' lo ' | awk '{print $2}' | head -n 1)
+  ip=$($IP_CMD -4 -o addr show | grep -v ' lo ' | awk '{print $4}' | cut -d/ -f1 | head -n 1)
   if [ -n "$interface" ] && [ -n "$ip" ]; then
     echo "$interface:$ip"
   fi
@@ -62,4 +70,3 @@ fi
 when = "true"
 style = "bold red"
 format = '[-\[](bold blue)[$output]($style)[\]](bold blue) '
-
