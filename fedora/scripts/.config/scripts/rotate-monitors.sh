@@ -1,18 +1,18 @@
 #!/bin/bash
 
 monitor="eDP-1"
-pos="0x0"
 
-# Get current monitor info
-monitor_info=$(hyprctl monitors -j | jq -r ".[] | select(.name==\"$monitor\")")
-current=$(echo "$monitor_info" | jq -r ".transform // 0")
-current=$((current))
-scale=$(echo "$monitor_info" | jq -r ".scale")
+# Get current monitor transform under Sway
+current_transform=$(swaymsg -t get_outputs | jq -r ".[] | select(.name==\"$monitor\") | .transform")
 
-width=$(echo "$monitor_info" | jq -r ".width")
-height=$(echo "$monitor_info" | jq -r ".height")
-refresh=$(echo "$monitor_info" | jq -r ".refreshRate")
-res="${width}x${height}@${refresh}"
+# Map transform string to integer 0-3
+case "$current_transform" in
+  normal)      current=0 ;;
+  90)          current=1 ;;
+  180)         current=2 ;;
+  270)         current=3 ;;
+  *)           current=0 ;;
+esac
 
 case "$1" in
   left)
@@ -27,8 +27,13 @@ case "$1" in
     ;;
 esac
 
-hyprctl --batch "
-keyword monitor $monitor,$res,$pos,$scale,transform,$next;
-keyword input:touchdevice:transform $next;
-keyword input:tablet:transform $next
-"
+# Map integer 0-3 back to Sway transform value
+case "$next" in
+  0) transform="normal" ;;
+  1) transform="90" ;;
+  2) transform="180" ;;
+  3) transform="270" ;;
+esac
+
+# Rotate monitor output
+swaymsg output "$monitor" transform "$transform"
