@@ -180,6 +180,6 @@ workspace 5 output HDMI-A-1
 workspace 6 output HDMI-A-1
 workspace 7 output eDP-1
 
-# 15. Monitor Rotation Bindings (Right Alt + Arrow Keys)
-bindsym Alt_R+Left exec ~/.config/scripts/rotate-monitors.sh left
-bindsym Alt_R+Right exec ~/.config/scripts/rotate-monitors.sh right
+# 15. Monitor Rotation Bindings (Right Alt + Arrow Keys via keyd)
+bindsym Ctrl+Mod1+Shift+Left exec ~/.config/scripts/rotate-monitors.sh left
+bindsym Ctrl+Mod1+Shift+Right exec ~/.config/scripts/rotate-monitors.sh right
