@@ -9,11 +9,18 @@ vim.opt.tabstop = 4
 vim.opt.smartindent = true
 vim.opt.termguicolors = true
 vim.opt.clipboard = "unnamedplus" -- Sync with system clipboard
+vim.opt.list = true -- Show invisible characters
+vim.opt.listchars = {
+  tab = "▸ ",
+  trail = "+",
+  eol = "$",
+}
 
 -- Essential keymaps
 vim.keymap.set("i", "kj", "<Esc>", { desc = "Exit insert mode" })
 vim.keymap.set({"n", "v"}, "gl", "$", { desc = "Go to end of line" })
 vim.keymap.set("n", "<leader>va", "ggVG", { desc = "Select all" })
+vim.keymap.set("n", "<leader>l", "<CMD>set list!<CR>", { desc = "Toggle invisible characters" })
 
 -- Clipboard keymaps
 vim.keymap.set({"n", "v"}, "<leader>y", '"+y', { desc = "Copy to system clipboard" })
