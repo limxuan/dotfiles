@@ -34,3 +34,19 @@ fish_add_path /home/limxuan/.opencode/bin
 if test -d "$HOME/.local/bin"
     fish_add_path "$HOME/.local/bin"
 end
+
+# Kanagawa Dragon syntax highlighting colors
+set -g fish_color_normal normal
+set -g fish_color_command 7e9cd8
+set -g fish_color_quote e6c384
+set -g fish_color_redirection 7fb4ca
+set -g fish_color_end 938aa9
+set -g fish_color_error c3404b
+set -g fish_color_param 957fb8
+set -g fish_color_comment 727169
+set -g fish_color_match --background=2d4f67
+set -g fish_color_selection --background=223249
+set -g fish_color_search_match --background=223249
+set -g fish_color_operator 76bbca
+set -g fish_color_escape 957fb8
+set -g fish_color_autosuggestion 54546d

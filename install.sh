@@ -25,8 +25,10 @@ if [ -f /etc/fedora-release ]; then
     OS="fedora"
 elif [ -f /etc/kali-version ] || grep -qi "kali" /etc/os-release 2>/dev/null; then
     OS="kali"
+elif [ -f /etc/parrot-version ] || grep -qi "parrot" /etc/os-release 2>/dev/null; then
+    OS="parrot"
 else
-    echo -e "${RED}Error: Unsupported operating system (Only Fedora and Kali are supported).${NC}"
+    echo -e "${RED}Error: Unsupported operating system (Only Fedora, Kali, and Parrot OS are supported).${NC}"
     exit 1
 fi
 echo -e "${GREEN}Detected OS profile: ${OS}${NC}"
@@ -57,6 +59,19 @@ elif [ "${OS}" = "kali" ]; then
     echo -e "\n${YELLOW}[2/6] Setting up XFCE Desktop keybindings...${NC}"
     chmod +x kali/setup-xfce-keybinds.sh
     ./kali/setup-xfce-keybinds.sh
+
+elif [ "${OS}" = "parrot" ]; then
+    echo -e "\n${YELLOW}[1/6] Installing Parrot OS packages via APT...${NC}"
+    sudo apt-get update
+    sudo apt-get install -y fish kitty stow starship zoxide eza gnupg wget curl nvim tmux
+
+    # Install mise repo and packages
+    echo -e "\n${YELLOW}[2/6] Setting up Mise tool manager...${NC}"
+    sudo install -dm 755 /etc/apt/keyrings
+    wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | sudo tee /etc/apt/keyrings/mise-archive-keyring.gpg > /dev/null
+    echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list
+    sudo apt-get update
+    sudo apt-get install -y mise
 fi
 
 # 3. Download Shared Binaries (Sesh & Tmux Plugin Manager)
@@ -152,6 +167,25 @@ elif [ "${OS}" = "kali" ]; then
     
     echo -e "Enabling Avahi daemon for mDNS resolution..."
     sudo systemctl enable --now avahi-daemon
+
+    # Setup SSH authorized keys
+    echo -e "Configuring SSH authorized keys..."
+    mkdir -p "$HOME/.ssh"
+    chmod 700 "$HOME/.ssh"
+    touch "$HOME/.ssh/authorized_keys"
+    chmod 600 "$HOME/.ssh/authorized_keys"
+    SSH_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFxkC9AWoLNhjeaDXB/pE7iK1cYrpyfMds8r0OAbesFT"
+    if ! grep -qF "$SSH_KEY" "$HOME/.ssh/authorized_keys"; then
+        echo "$SSH_KEY" >> "$HOME/.ssh/authorized_keys"
+        echo "  - Added public key to authorized_keys"
+    fi
+
+elif [ "${OS}" = "parrot" ]; then
+    echo -e "Linking Parrot OS configurations..."
+    stow -d "${DOTFILES_DIR}/common" -t "$HOME" fish kitty nvim tmux
+    if [ -d "${DOTFILES_DIR}/parrot" ]; then
+        stow -d "${DOTFILES_DIR}" -t "$HOME" parrot
+    fi
 
     # Setup SSH authorized keys
     echo -e "Configuring SSH authorized keys..."
