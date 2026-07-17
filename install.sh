@@ -63,7 +63,12 @@ elif [ "${OS}" = "kali" ]; then
 elif [ "${OS}" = "parrot" ]; then
     echo -e "\n${YELLOW}[1/6] Installing Parrot OS packages via APT...${NC}"
     sudo apt-get update
-    sudo apt-get install -y fish kitty stow starship zoxide eza gnupg wget curl nvim tmux
+    sudo apt-get install -y fish kitty stow starship zoxide eza gnupg wget curl nvim tmux fzf fd-find
+    
+    # Create fd symlink for fd-find
+    if [ ! -f /usr/local/bin/fd ] && command -v fdfind &>/dev/null; then
+        sudo ln -s /usr/bin/fdfind /usr/local/bin/fd
+    fi
 
     # Install mise repo and packages
     echo -e "\n${YELLOW}[2/6] Setting up Mise tool manager...${NC}"
