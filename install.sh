@@ -63,7 +63,7 @@ elif [ "${OS}" = "kali" ]; then
 elif [ "${OS}" = "parrot" ]; then
     echo -e "\n${YELLOW}[1/6] Installing Parrot OS packages via APT...${NC}"
     sudo apt-get update
-    sudo apt-get install -y fish kitty stow starship zoxide eza gnupg wget curl nvim tmux fzf fd-find
+    sudo apt-get install -y fish kitty stow starship zoxide eza gnupg wget curl nvim tmux fzf fd-find keyd
     
     # Create fd symlink for fd-find
     if [ ! -f /usr/local/bin/fd ] && command -v fdfind &>/dev/null; then
