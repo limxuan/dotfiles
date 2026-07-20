@@ -50,3 +50,10 @@ set -g fish_color_search_match --background=223249
 set -g fish_color_operator 76bbca
 set -g fish_color_escape 957fb8
 set -g fish_color_autosuggestion 54546d
+
+# opencode
+fish_add_path /home/lx/.opencode/bin
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/home/lx/.local/bin" $PATH

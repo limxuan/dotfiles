@@ -14,6 +14,7 @@
   "modules-right": [
     "pulseaudio",
     "network",
+    "network#vpn",
     "battery",
     "tray"
   ],
@@ -44,6 +45,12 @@
     "format-wifi": "WIFI  {essid}",
     "format-ethernet": "ETH  CONNECTED",
     "format-disconnected": "OFFLINE",
+    "tooltip": false
+  },
+  "network#vpn": {
+    "interface": "tun*",
+    "format": "VPN  {ipaddr}",
+    "format-disconnected": "",
     "tooltip": false
   },
   "battery": {

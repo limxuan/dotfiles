@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Bluetooth TUI (BlueTUI)
+Comment=Manage your Bluetooth devices with BlueTUI
+Exec=kitty --class=BlueTUI -e bluetui
+Icon=bluetooth
+Terminal=false
+Type=Application
+Categories=Network;System;Settings;
+Keywords=bluetooth;bluez;tui;bluetui;

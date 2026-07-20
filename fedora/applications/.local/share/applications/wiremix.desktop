@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Sound Mixer TUI (Wiremix)
+Comment=Manage your audio volumes and mixers with Wiremix TUI
+Exec=kitty --class=Wiremix -e wiremix
+Icon=multimedia-volume-control
+Terminal=false
+Type=Application
+Categories=AudioVideo;Audio;System;Settings;
+Keywords=audio;volume;mixer;pulse;pipewire;wiremix;tui;

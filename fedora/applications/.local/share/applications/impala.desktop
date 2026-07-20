@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Wi-Fi TUI (Impala)
+Comment=Manage your Wi-Fi connections with Impala TUI
+Exec=kitty --class=Impala -e impala
+Icon=network-wireless
+Terminal=false
+Type=Application
+Categories=Network;System;Settings;
+Keywords=wifi;network;internet;tui;impala;

@@ -46,6 +46,7 @@ window#waybar {
 #clock,
 #pulseaudio,
 #network,
+#network.vpn,
 #battery,
 #tray {
     padding: 0 12px;
@@ -70,6 +71,10 @@ window#waybar {
 
 #network {
     color: #8ba4b0; /* Kanagawa-inspired blue */
+}
+
+#network.vpn {
+    color: #957fb8; /* Kanagawa-inspired purple/violet */
 }
 
 #battery {
