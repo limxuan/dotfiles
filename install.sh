@@ -49,7 +49,7 @@ if [ "${OS}" = "fedora" ]; then
         niri sway keyd stow kitty nautilus noctalia-git fish jetbrains-mono-fonts \
         starship mise ripgrep fzf eza zoxide wofi cliphist brightnessctl \
         SwayNotificationCenter grimshot sway-contrib swappy fuse-libs network-manager-applet pavucontrol wtype \
-        helium-bin
+        helium-bin wiremix
 
 elif [ "${OS}" = "kali" ]; then
     echo -e "\n${YELLOW}[1/6] Running Kali tools installer...${NC}"
@@ -93,6 +93,27 @@ fi
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     echo -e "\n${YELLOW}Installing Tmux Plugin Manager (TPM)...${NC}"
     git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+fi
+
+# 3b. Install Fedora-specific TUI apps (Impala & Bluetui)
+if [ "${OS}" = "fedora" ]; then
+    if ! command -v impala &> /dev/null; then
+        echo -e "\n${YELLOW}Installing Impala WiFi TUI manager...${NC}"
+        LATEST_IMPALA_URL=$(curl -s https://api.github.com/repos/pythops/impala/releases/latest | grep "browser_download_url" | grep "x86_64-unknown-linux-musl" | cut -d '"' -f 4)
+        mkdir -p "$HOME/.local/bin"
+        curl -L -o "$HOME/.local/bin/impala" "${LATEST_IMPALA_URL}"
+        chmod +x "$HOME/.local/bin/impala"
+        echo -e "${GREEN}Impala installed successfully!${NC}"
+    fi
+
+    if ! command -v bluetui &> /dev/null; then
+        echo -e "\n${YELLOW}Installing Bluetui Bluetooth TUI manager...${NC}"
+        LATEST_BLUETUI_URL=$(curl -s https://api.github.com/repos/pythops/bluetui/releases/latest | grep "browser_download_url" | grep "x86_64-linux-musl" | cut -d '"' -f 4)
+        mkdir -p "$HOME/.local/bin"
+        curl -L -o "$HOME/.local/bin/bluetui" "${LATEST_BLUETUI_URL}"
+        chmod +x "$HOME/.local/bin/bluetui"
+        echo -e "${GREEN}Bluetui installed successfully!${NC}"
+    fi
 fi
 
 # 4. Clean up conflicting config paths to prevent Stow linking errors
