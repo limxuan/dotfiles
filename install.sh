@@ -241,6 +241,12 @@ elif [ "${OS}" = "parrot" ]; then
         sudo ln -s /usr/bin/fdfind /usr/local/bin/fd
     fi
 
+    # Fix broken '_=sudo' alias in Parrot's default fish config (reserved keyword in newer fish)
+    if grep -q "^alias _=sudo" /etc/fish/config.fish 2>/dev/null; then
+        echo -e "${YELLOW}Fixing broken fish alias in /etc/fish/config.fish...${NC}"
+        sudo sed -i 's/^alias _=sudo/# alias _=sudo/' /etc/fish/config.fish
+    fi
+
     # Install mise repo and packages
     echo -e "\n${YELLOW}[2/6] Setting up Mise tool manager...${NC}"
     sudo install -dm 755 /etc/apt/keyrings
