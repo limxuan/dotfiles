@@ -233,7 +233,8 @@ elif [ "${OS}" = "kali" ]; then
 elif [ "${OS}" = "parrot" ]; then
     echo -e "\n${YELLOW}[1/6] Installing Parrot OS packages via APT...${NC}"
     sudo apt-get update
-    sudo apt-get install -y fish kitty stow starship zoxide eza gnupg wget curl neovim tmux fzf fd-find keyd
+    sudo apt-get install -y --no-install-recommends fish stow starship zoxide eza neovim tmux
+    sudo apt-get install -y --no-install-recommends kitty keyd gnupg wget curl fzf fd-find
     
     # Create fd symlink for fd-find
     if [ ! -f /usr/local/bin/fd ] && command -v fdfind &>/dev/null; then
@@ -246,7 +247,7 @@ elif [ "${OS}" = "parrot" ]; then
     wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | sudo tee /etc/apt/keyrings/mise-archive-keyring.gpg > /dev/null
     echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list
     sudo apt-get update
-    sudo apt-get install -y mise
+    sudo apt-get install -y --no-install-recommends mise
 fi
 
 # 3. Download Shared Binaries (Sesh & Tmux Plugin Manager)
