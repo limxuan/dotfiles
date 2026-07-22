@@ -217,29 +217,13 @@ elif [ "${OS}" = "kali" ]; then
     ./kali/setup-xfce-keybinds.sh
 
 elif [ "${OS}" = "parrot" ]; then
-    echo -e "\n${YELLOW}[1/6] Installing Parrot OS packages via APT...${NC}"
-    sudo apt-get update
-    sudo apt-get install -y --no-install-recommends fish stow starship zoxide eza neovim tmux
-    sudo apt-get install -y --no-install-recommends kitty keyd gnupg wget curl fzf fd-find
-    
-    # Create fd symlink for fd-find
-    if [ ! -f /usr/local/bin/fd ] && command -v fdfind &>/dev/null; then
-        sudo ln -s /usr/bin/fdfind /usr/local/bin/fd
-    fi
+    echo -e "\n${YELLOW}[1/6] Running Parrot OS tools installer...${NC}"
+    chmod +x parrot/install-tools.sh
+    ./parrot/install-tools.sh
 
-    # Fix broken '_=sudo' alias in Parrot's default fish config (reserved keyword in newer fish)
-    if grep -q "^alias _=sudo" /etc/fish/config.fish 2>/dev/null; then
-        echo -e "${YELLOW}Fixing broken fish alias in /etc/fish/config.fish...${NC}"
-        sudo sed -i 's/^alias _=sudo/# alias _=sudo/' /etc/fish/config.fish
-    fi
-
-    # Install mise repo and packages
-    echo -e "\n${YELLOW}[2/6] Setting up Mise tool manager...${NC}"
-    sudo install -dm 755 /etc/apt/keyrings
-    wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | sudo tee /etc/apt/keyrings/mise-archive-keyring.gpg > /dev/null
-    echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list
-    sudo apt-get update
-    sudo apt-get install -y --no-install-recommends mise
+    echo -e "\n${YELLOW}[2/6] Setting up MATE Desktop keybindings...${NC}"
+    chmod +x parrot/setup-mate-keybinds.sh
+    ./parrot/setup-mate-keybinds.sh
 fi
 
 # 3. Download Shared Binaries (Sesh & Tmux Plugin Manager)
@@ -333,7 +317,7 @@ if [ "${OS}" = "fedora" ]; then
     remove_if_real "$HOME/.config/scripts"
     remove_if_real "$HOME/.config/sway"
     remove_if_real "$HOME/.config/waybar"
-elif [ "${OS}" = "kali" ]; then
+elif [ "${OS}" = "kali" ] || [ "${OS}" = "parrot" ]; then
     remove_if_real "$HOME/.config/starship.toml"
     remove_if_real "$HOME/.config/scripts"
 fi
@@ -345,7 +329,7 @@ echo -e "\n${YELLOW}[5/6] Linking configuration profiles via Stow...${NC}"
 stow -d "${DOTFILES_DIR}/common" -t "$HOME" fish kitty nvim tmux
 
 # Link keyd configuration system-wide
-if [ "${OS}" != "kali" ]; then
+if [ "${OS}" = "fedora" ]; then
     echo -e "Deploying Keyd keyboard configuration..."
     if [ -L "/etc/keyd" ]; then
         sudo rm -f /etc/keyd
@@ -520,10 +504,7 @@ elif [ "${OS}" = "kali" ]; then
 
 elif [ "${OS}" = "parrot" ]; then
     echo -e "Linking Parrot OS configurations..."
-    stow -d "${DOTFILES_DIR}/common" -t "$HOME" fish kitty nvim tmux
-    if [ -d "${DOTFILES_DIR}/parrot" ]; then
-        stow -d "${DOTFILES_DIR}" -t "$HOME" parrot
-    fi
+    stow -d "${DOTFILES_DIR}/parrot" -t "$HOME" starship
 
     # Setup SSH authorized keys
     echo -e "Configuring SSH authorized keys..."
