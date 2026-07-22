@@ -37,7 +37,7 @@ for i in {1..6}; do
 done
 
 # Restart xfwm4 to apply changes safely
-if command -v xfwm4 --replace &>/dev/null; then
+if command -v xfwm4 &>/dev/null; then
   echo "[+] Reloading XFCE Window Manager..."
   xfwm4 --replace --daemonize &>/dev/null || true
 fi

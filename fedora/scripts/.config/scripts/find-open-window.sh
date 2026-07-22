@@ -3,7 +3,7 @@
 # Check if running inside terminal
 if [ ! -t 0 ]; then
     # Not in terminal, spawn one
-    alacritty --class=float-window -e "$0" "$@"
+    kitty --class=float-window -e "$0" "$@"
     exit 0
 fi
 

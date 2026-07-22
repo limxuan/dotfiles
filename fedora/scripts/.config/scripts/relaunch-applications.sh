@@ -78,9 +78,6 @@ jq -c '.[]' "$STATE_FILE" | while read -r window; do
             "kitty")
                 launch_cmd="kitty"
                 ;;
-            "Alacritty")
-                launch_cmd="alacritty"
-                ;;
             "foot")
                 launch_cmd="foot"
                 ;;

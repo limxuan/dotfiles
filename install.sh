@@ -348,8 +348,8 @@ if [ "${OS}" = "fedora" ]; then
     remove_if_real "$HOME/.config/sway"
     remove_if_real "$HOME/.config/waybar"
 elif [ "${OS}" = "kali" ]; then
-    remove_if_real "$HOME/.config/alacritty"
     remove_if_real "$HOME/.config/starship.toml"
+    remove_if_real "$HOME/.config/scripts"
 fi
 
 # 5. Link configurations using Stow
@@ -513,7 +513,7 @@ EOF
 
 elif [ "${OS}" = "kali" ]; then
     echo -e "Linking Kali configurations..."
-    stow -d "${DOTFILES_DIR}/kali" -t "$HOME" alacritty starship
+    stow -d "${DOTFILES_DIR}/kali" -t "$HOME" starship
     
     echo -e "Enabling Avahi daemon for mDNS resolution..."
     sudo systemctl enable --now avahi-daemon
