@@ -34,9 +34,10 @@ if [ ! -f /usr/local/bin/fd ] && command -v fdfind &>/dev/null; then
 fi
 
 # Fix broken '_=sudo' alias in Parrot's default fish config (reserved keyword in newer fish)
-if grep -q "^alias _=sudo" /etc/fish/config.fish 2>/dev/null; then
+if [ -f /etc/fish/config.fish ]; then
     echo "[+] Fixing broken fish alias in /etc/fish/config.fish..."
-    sudo sed -i 's/^alias _=sudo/# alias _=sudo/' /etc/fish/config.fish
+    sudo sed -i '/alias _=/d' /etc/fish/config.fish 2>/dev/null || true
+    sudo sed -i '/alias _ /d' /etc/fish/config.fish 2>/dev/null || true
 fi
 
 # --- Install Starship Prompt ---
