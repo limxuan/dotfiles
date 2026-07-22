@@ -67,16 +67,6 @@ else
   echo "[*] Sesh is already installed"
 fi
 
-# --- Install Visual Studio Code ---
-if ! command -v code &>/dev/null; then
-  echo "[+] Downloading and installing Visual Studio Code (.deb)..."
-  wget -O /tmp/code.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
-  sudo apt-get install -y /tmp/code.deb
-  rm -f /tmp/code.deb
-  echo "[+] Visual Studio Code installed"
-else
-  echo "[*] Visual Studio Code is already installed"
-fi
 
 # --- Install Mise (Runtime manager) ---
 if ! command -v mise &>/dev/null; then
