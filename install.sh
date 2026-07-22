@@ -548,7 +548,7 @@ if [ -f "$FISH_PATH" ]; then
     fi
     if [ "${SHELL:-}" != "$FISH_PATH" ]; then
         echo -e "\n${YELLOW}[6/6] Changing default shell to Fish...${NC}"
-        chsh -s "$FISH_PATH"
+        sudo chsh -s "$FISH_PATH" "$USER"
     fi
 fi
 
