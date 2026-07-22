@@ -49,7 +49,7 @@ if [ "${OS}" = "fedora" ]; then
         niri sway keyd stow kitty nautilus noctalia-git fish jetbrains-mono-fonts \
         starship mise ripgrep fzf eza zoxide wofi cliphist brightnessctl \
         SwayNotificationCenter grimshot sway-contrib swappy fuse-libs network-manager-applet pavucontrol wtype \
-        helium-bin wiremix neovim btop iwd
+        helium-bin wiremix neovim btop iwd obs-studio
 
     echo -e "\n${YELLOW}Installing Bitwarden via Flatpak...${NC}"
     if ! command -v flatpak &>/dev/null; then
