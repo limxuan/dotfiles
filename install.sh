@@ -158,7 +158,6 @@ EOF
     INSTALL_ANTIGRAVITY=""
     INSTALL_OPENCODE=""
     INSTALL_CODE=""
-    INSTALL_OBSIDIAN=""
     if ! command -v agy &>/dev/null; then
         read -rp "  Install Antigravity CLI (agy)? [y/N] " INSTALL_ANTIGRAVITY
     else
@@ -174,12 +173,7 @@ EOF
     else
         echo "  Visual Studio Code is already installed. Skipping..."
     fi
-    if ! { command -v flatpak &>/dev/null && flatpak info md.obsidian.Obsidian &>/dev/null; }; then
-        read -rp "  Install Obsidian? [y/N] " INSTALL_OBSIDIAN
-    else
-        echo "  Obsidian is already installed. Skipping..."
-    fi
-    for pkg in antigravity opencode code obsidian; do
+    for pkg in antigravity opencode code; do
             var="INSTALL_$(echo "$pkg" | tr '[:lower:]' '[:upper:]')"
             [ "${!var}" = "y" ] || [ "${!var}" = "Y" ] || [ "${!var}" = "yes" ] || continue
             case "$pkg" in
@@ -209,14 +203,6 @@ gpgcheck=1
 gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 EOF
                     sudo dnf install -y code
-                    ;;
-                obsidian)
-                    echo -e "${GREEN}  Installing Obsidian via Flatpak...${NC}"
-                    if ! command -v flatpak &>/dev/null; then
-                        sudo dnf install -y flatpak
-                    fi
-                    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-                    flatpak install -y flathub md.obsidian.Obsidian
                     ;;
             esac
         done

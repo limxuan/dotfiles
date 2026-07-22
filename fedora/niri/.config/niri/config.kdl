@@ -88,7 +88,6 @@ binds {
     // Media & Apps
     Mod+M { spawn "spotify"; }
     Mod+N { spawn "omarchy-launch-editor"; }
-    Mod+Shift+O { spawn "obsidian"; }
     Mod+Shift+W { spawn "typora" "--enable-wayland-ime"; }
     Mod+Shift+Slash { spawn "1password"; }
 

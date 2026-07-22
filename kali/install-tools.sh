@@ -56,24 +56,6 @@ else
   echo "[*] Sesh is already installed"
 fi
 
-# --- Install Obsidian ---
-if ! command -v obsidian &>/dev/null; then
-  echo "[+] Downloading and installing Obsidian (.deb)..."
-  OBSIDIAN_VERSION=$(curl -s "https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest" | grep -Po '"tag_name": "v\K[^"]*' || echo "")
-  if [ -z "$OBSIDIAN_VERSION" ]; then
-    echo "[!] Failed to fetch latest Obsidian version from GitHub. Falling back to 1.12.7..."
-    OBSIDIAN_VERSION="1.12.7"
-  else
-    echo "Found Obsidian version: v$OBSIDIAN_VERSION"
-  fi
-  wget -O /tmp/obsidian.deb "https://github.com/obsidianmd/obsidian-releases/releases/download/v${OBSIDIAN_VERSION}/obsidian_${OBSIDIAN_VERSION}_amd64.deb"
-  sudo apt-get install -y /tmp/obsidian.deb
-  rm -f /tmp/obsidian.deb
-  echo "[+] Obsidian installed"
-else
-  echo "[*] Obsidian is already installed"
-fi
-
 # --- Install Visual Studio Code ---
 if ! command -v code &>/dev/null; then
   echo "[+] Downloading and installing Visual Studio Code (.deb)..."
