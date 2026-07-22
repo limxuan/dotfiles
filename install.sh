@@ -345,13 +345,15 @@ echo -e "\n${YELLOW}[5/6] Linking configuration profiles via Stow...${NC}"
 stow -d "${DOTFILES_DIR}/common" -t "$HOME" fish kitty nvim tmux
 
 # Link keyd configuration system-wide
-echo -e "Deploying Keyd keyboard configuration..."
-if [ -L "/etc/keyd" ]; then
-    sudo rm -f /etc/keyd
+if [ "${OS}" != "kali" ]; then
+    echo -e "Deploying Keyd keyboard configuration..."
+    if [ -L "/etc/keyd" ]; then
+        sudo rm -f /etc/keyd
+    fi
+    sudo mkdir -p /etc/keyd
+    sudo ln -sf "${DOTFILES_DIR}/common/keyd/etc/keyd/default.conf" /etc/keyd/default.conf
+    sudo systemctl enable --now keyd.service
 fi
-sudo mkdir -p /etc/keyd
-sudo ln -sf "${DOTFILES_DIR}/common/keyd/etc/keyd/default.conf" /etc/keyd/default.conf
-sudo systemctl enable --now keyd.service
 
 if [ "${OS}" = "fedora" ]; then
     echo -e "Linking Fedora configurations..."

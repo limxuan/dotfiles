@@ -14,7 +14,6 @@ sudo apt-get install -y \
   fzf \
   ripgrep \
   zoxide \
-  keyd \
   eza \
   bat \
   xclip \
