@@ -21,7 +21,6 @@ sudo apt-get install -y --no-install-recommends \
   curl \
   wget \
   neovim \
-  fish \
   kitty \
   build-essential \
   avahi-daemon \
@@ -32,15 +31,6 @@ sudo apt-get install -y --no-install-recommends \
 # Create fd symlink for fd-find
 if [ ! -f /usr/local/bin/fd ] && command -v fdfind &>/dev/null; then
     sudo ln -sf /usr/bin/fdfind /usr/local/bin/fd
-fi
-
-# Fix broken '_=sudo' alias in Parrot's default fish config (reserved keyword in newer fish)
-if [ -f /etc/fish/config.fish ]; then
-    echo "[+] Fixing broken fish alias in /etc/fish/config.fish..."
-    sudo sed -i '/alias _=/d' /etc/fish/config.fish
-    sudo sed -i '/alias _i=/d' /etc/fish/config.fish
-    sudo sed -i '/alias fucking=/d' /etc/fish/config.fish
-    sudo sed -i '/alias please=/d' /etc/fish/config.fish
 fi
 
 # Enable touchpad two-finger scrolling via libinput (MATE desktop)

@@ -326,7 +326,7 @@ fi
 echo -e "\n${YELLOW}[5/6] Linking configuration profiles via Stow...${NC}"
 
 # Link common configurations
-stow -d "${DOTFILES_DIR}/common" -t "$HOME" fish kitty nvim tmux
+stow -d "${DOTFILES_DIR}/common" -t "$HOME" bash fish kitty nvim tmux
 
 # Link keyd configuration system-wide
 if [ "${OS}" = "fedora" ]; then
