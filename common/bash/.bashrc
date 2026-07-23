@@ -7,7 +7,8 @@ alias trs=tmux_reset
 
 # Tool init
 eval "$(zoxide init bash)"
-source /usr/share/fzf/key-bindings.bash
+[[ -f /usr/share/doc/fzf/examples/key-bindings.bash ]] && source /usr/share/doc/fzf/examples/key-bindings.bash
+[[ -f /usr/share/fzf/key-bindings.bash ]] && source /usr/share/fzf/key-bindings.bash
 
 # PATH
 [[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
