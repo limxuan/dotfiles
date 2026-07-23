@@ -26,7 +26,8 @@ sudo apt-get install -y --no-install-recommends \
   build-essential \
   avahi-daemon \
   fd-find \
-  gnupg
+  gnupg \
+  xserver-xorg-input-libinput
 
 # Create fd symlink for fd-find
 if [ ! -f /usr/local/bin/fd ] && command -v fdfind &>/dev/null; then
@@ -36,9 +37,35 @@ fi
 # Fix broken '_=sudo' alias in Parrot's default fish config (reserved keyword in newer fish)
 if [ -f /etc/fish/config.fish ]; then
     echo "[+] Fixing broken fish alias in /etc/fish/config.fish..."
-    sudo sed -i '/alias _=/d' /etc/fish/config.fish 2>/dev/null || true
-    sudo sed -i '/alias _ /d' /etc/fish/config.fish 2>/dev/null || true
+    sudo sed -i '/alias _=/d' /etc/fish/config.fish
+    sudo sed -i '/alias _i=/d' /etc/fish/config.fish
+    sudo sed -i '/alias fucking=/d' /etc/fish/config.fish
+    sudo sed -i '/alias please=/d' /etc/fish/config.fish
 fi
+
+# Enable touchpad two-finger scrolling via libinput (MATE desktop)
+if command -v xinput &>/dev/null; then
+    TOUCHPAD=$(xinput list --short | grep -i touchpad | grep -oP 'id=\K\d+' | head -1)
+    if [ -n "$TOUCHPAD" ]; then
+        echo "[+] Configuring touchpad scrolling (id=$TOUCHPAD)..."
+        xinput set-prop "$TOUCHPAD" "libinput Scrolling Pixel Distance" 15 2>/dev/null || true
+        xinput set-prop "$TOUCHPAD" "libinput Natural Scrolling Enabled" 0 2>/dev/null || true
+    fi
+fi
+
+# Persist touchpad config via X11 conf
+sudo mkdir -p /etc/X11/xorg.conf.d
+sudo tee /etc/X11/xorg.conf.d/40-touchpad.conf > /dev/null << 'TOUCHEOF'
+Section "InputClass"
+    Identifier "touchpad"
+    MatchIsTouchpad "on"
+    Driver "libinput"
+    Option "Tapping" "on"
+    Option "NaturalScrolling" "false"
+    Option "ScrollPixelDistance" "15"
+    Option "AccelSpeed" "0.3"
+EndSection
+TOUCHEOF
 
 # --- Install Starship Prompt ---
 if ! command -v starship &>/dev/null; then

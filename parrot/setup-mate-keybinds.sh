@@ -18,6 +18,11 @@ if command -v gsettings &>/dev/null; then
     gsettings set org.mate.Marco.window-keybindings move-to-workspace-$i "<Super><Shift>$i" 2>/dev/null || true
   done
 
+  # Remove Alt+T terminal shortcut so tmux M-t works
+  echo "[+] Disabling MATE Alt+T terminal shortcut (conflicts with tmux)..."
+  gsettings set org.mate.SettingsDaemon.plugins.media-keys terminal "[]" 2>/dev/null || true
+  gsettings set org.mate.desktop.keybindings run-command-1 "[]" 2>/dev/null || true
+
   # Add custom application shortcuts
   echo "[+] Configuring custom application shortcuts..."
   gsettings set org.mate.Marco.global-keybindings run-command-1 "<Super>Return" 2>/dev/null || true
