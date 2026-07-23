@@ -7,7 +7,6 @@ alias trs=tmux_reset
 
 # Tool init
 eval "$(zoxide init bash)"
-eval "$(starship init bash)"
 
 # PATH
 [[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
@@ -72,3 +71,9 @@ tmux_reset() {
 
     echo "Tmux reset complete: now in session '$folder_name', focused on the first window."
 }
+
+# Syntax highlighting and autosuggestions (like fish)
+if [[ -f ~/.local/share/blesh/ble.sh ]]; then
+    source ~/.local/share/blesh/ble.sh --noattach
+    ble-attach
+fi

@@ -328,6 +328,14 @@ echo -e "\n${YELLOW}[5/6] Linking configuration profiles via Stow...${NC}"
 # Link common configurations
 stow -d "${DOTFILES_DIR}/common" -t "$HOME" bash fish kitty nvim tmux
 
+# Install ble.sh (bash syntax highlighting + autosuggestions)
+if [ ! -f "$HOME/.local/share/blesh/ble.sh" ]; then
+    echo -e "${YELLOW}Installing ble.sh for bash syntax highlighting...${NC}"
+    mkdir -p "$HOME/.local/share/blesh"
+    git clone --depth 1 --recurse-submodules https://github.com/akinomyoga/ble.sh.git "$HOME/.local/share/blesh"
+    make -C "$HOME/.local/share/blesh" install PREFIX="$HOME/.local"
+fi
+
 # Link keyd configuration system-wide
 if [ "${OS}" = "fedora" ]; then
     echo -e "Deploying Keyd keyboard configuration..."
