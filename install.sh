@@ -306,6 +306,7 @@ remove_if_real() {
 }
 
 echo -e "\n${YELLOW}[4/6] Preparing user configuration directories...${NC}"
+remove_if_real "$HOME/.bashrc"
 remove_if_real "$HOME/.config/fish"
 remove_if_real "$HOME/.config/nvim"
 remove_if_real "$HOME/.config/tmux"

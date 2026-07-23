@@ -21,18 +21,11 @@ sudo apt-get install -y \
   curl \
   wget \
   neovim \
-  fish \
   kitty \
   build-essential \
-  avahi-daemon
-
-# --- Install Starship Prompt ---
-if ! command -v starship &>/dev/null; then
-  echo "[+] Installing starship prompt..."
-  curl -sS https://starship.rs/install.sh | sh -s -- -y
-else
-  echo "[*] Starship is already installed"
-fi
+  avahi-daemon \
+  fd-find \
+  gnupg
 
 # --- Install Sesh (Tmux Session Manager) ---
 if ! command -v sesh &>/dev/null; then
